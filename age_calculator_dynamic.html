@@ -1,0 +1,37 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+<body>
+    
+    <div class="cal-container">
+        <h2>Age Calculator</h2>
+        
+        <div class="input">
+            <form id="dob">
+                <label for="month">Month</label><input type="text" id="month">
+                <label for="date">Date</lable><input type="text" id="date">
+                <label for="year">Year</label><input type="text" id="year">  
+            </form>          
+        </div>
+        
+        <div class="result-container">
+            <div id="result"></div>
+        </div>
+
+        <div class="button-container">           
+            <div>
+                <button class="button" onclick="ageToday()">Calculate</button>
+            </div>
+            <div>
+                <button class="button" onclick="clearFields()">Reset</button>
+            </div>
+        </div>
+
+    
+        <script src="js/script.js"></script>
+</body>
+</html>

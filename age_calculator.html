@@ -1,0 +1,132 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .cal-container {
+            border: 1px solid black;
+            width: 35%;
+            margin: 100px auto; /* 'auto' makes content center */
+            text-align: center;
+            padding-top:30px;
+            padding-bottom: 30px;
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: wheat;
+            border-radius: 30px;
+        }
+
+        .flex-box-container-1 {    
+            display: flex;
+            flex-wrap: wrap;
+            flex-direction: row;
+            justify-content:space-evenly;
+            text-align: center;
+        }
+
+        .flex-box-container-1 div {
+            padding:10px;
+            align-items: center;
+        }
+
+        .input input {
+            width: 50px;
+            margin: 10px;
+            text-align: center;
+        }
+
+        .result-container input {
+            width: 40px;
+            margin: 10px;
+            text-align: center;
+        }
+
+        .button {
+            width: 100px;
+            background-color: purple;
+            color: white;
+            font-size: 16px;
+            padding: 10px;
+            border: none;
+            border-radius: 15px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="cal-container">
+        <h2>Age Calculator</h2>
+        
+        <div class="input">
+            <form id="dob">
+                <label for="month">Month</label><input type="text" id="month">
+                <label for="date">Date</lable><input type="text" id="date">
+                <label for="year">Year</label><input type="text" id="year">  
+            </form>          
+        </div>
+        
+        <div class="result-container">
+            <div id="result"></div>
+        </div>
+
+        <div class="flex-box-container-1">           
+            <div>
+                <button class="button" onclick="ageToday()">Calculate</button>
+            </div>
+            <div>
+                <button class="button" onclick="clearFields()">Reset</button>
+            </div>
+        </div>
+
+    
+    <script>
+
+    function ageToday() {
+    
+        var birthMonth = document.getElementById("month").value;
+        var birthDate = document.getElementById("date").value;
+        var birthYear = document.getElementById("year").value;
+        var currentMonth = new Date().getMonth()+1;
+        var currentDate = new Date().getDate();
+        var ageByYear = new Date().getFullYear()-birthYear;
+        var actualAge = 0;
+
+        if (birthMonth > currentMonth) {
+            actualAge = ageByYear -1;
+        }
+        else if (birthMonth < currentMonth) {
+            actualAge = ageByYear;
+        }
+        else if (birthMonth == currentMonth) {
+            if (birthDate < currentDate) {
+                actualAge = ageByYear -1;
+            }
+            else {
+                actualAge = ageByYear;
+            }
+        }
+
+        
+        var h3 = document.createElement("h3");
+        var answer = document.createTextNode("You Are " + actualAge + " Years Old as of Today!");
+
+        h3.setAttribute("id", "ageInDays") // will add into html as "<h1 id="ageInDays"></h1>
+        h3.appendChild(answer);
+        document.getElementById("result").appendChild(h3);
+    
+    }
+
+    document.getElementById("year").onkeydown = function (event) {
+        if (event.keyCode === 13) {
+        ageToday();
+        }
+    }; 
+
+
+    function clearFields() {
+        document.getElementById("ageInDays").remove();
+        document.getElementById("dob").reset();
+    };
+        </script>
+</body>
+</html>
